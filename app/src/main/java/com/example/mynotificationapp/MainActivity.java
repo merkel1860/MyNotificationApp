@@ -51,24 +51,24 @@ public class MainActivity extends AppCompatActivity {
     protected void displayNotification() {
         Log.i("Start", "notification");
         /* Invoking the default notification service */
-        NotificationCompat.Builder mBuilder =
+        NotificationCompat.Builder msgNotificationServiceBuilder =
                 new NotificationCompat.Builder(this);
-        mBuilder.setContentTitle("New Message");
-        mBuilder.setContentText("You've received new message.");
-        mBuilder.setTicker("New Message Alert!");
-        mBuilder.setSmallIcon(R.drawable.woman);
+        msgNotificationServiceBuilder.setContentTitle("New Message");
+        msgNotificationServiceBuilder.setContentText("You've received new message.");
+        msgNotificationServiceBuilder.setTicker("New Message Alert!");
+        msgNotificationServiceBuilder.setSmallIcon(R.drawable.woman);
         /* Increase notification number every time a new notification arrives */
-        mBuilder.setNumber(++numMessages);
+        msgNotificationServiceBuilder.setNumber(++numMessages);
         /* Add Big View Specific Configuration */
         NotificationCompat.InboxStyle inboxStyle =
                 new NotificationCompat.InboxStyle();
         String[] events = new String[6];
-        events[0] = new String("This is 6th line...");
-        events[1] = new String("This is first line....");
-        events[2] = new String("This is second line...");
-        events[3] = new String("This is third line...");
-        events[4] = new String("This is 4th line...");
-        events[5] = new String("This is 5th line...");
+        events[0] = new String("Meine Senhsucht...");
+        events[1] = new String("Wurdng bist nur du, mein Herr....");
+        events[2] = new String("Ich offne mein Herz weit zu Dir...");
+        events[3] = new String("Du bist heillig...");
+        events[4] = new String("Gott bist all fur mich...");
+        events[5] = new String("Darf ich mich preisen...");
 
 
 // Sets a title for the Inbox style big view
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < events.length; i++) {
             inboxStyle.addLine(events[i]);
         }
-        mBuilder.setStyle(inboxStyle);
+        msgNotificationServiceBuilder.setStyle(inboxStyle);
         /* Creates an explicit intent for an Activity in your app */
         Intent resultIntent = new Intent(this, NotificationView.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -89,40 +89,12 @@ public class MainActivity extends AppCompatActivity {
                         0,
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
-        mBuilder.setContentIntent(resultPendingIntent);
+        msgNotificationServiceBuilder.setContentIntent(resultPendingIntent);
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         /* notificationID allows you to update the notification later on. */
-        mNotificationManager.notify(notificationID, mBuilder.build());
+        mNotificationManager.notify(notificationID, msgNotificationServiceBuilder.build());
     }
-    /*protected void displayNotification() {
-        Log.i("Start", "notification");
-        *//* Invoking the default notification service *//*
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this);
-        mBuilder.setContentTitle("New Message");
-        mBuilder.setContentText("You've received new message.");
-        mBuilder.setTicker("New Message Alert!");
-        mBuilder.setSmallIcon(R.drawable.woman);
-        *//* Increase notification number every time a new notification arrives *//*
-        mBuilder.setNumber(++numMessages);
-        *//* Creates an explicit intent for an Activity in your app *//*
-        Intent resultIntent = new Intent(this, NotificationView.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(NotificationView.class);
-        *//* Adds the Intent that starts the Activity to the top of the stack *//*
-        stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        mBuilder.setContentIntent(resultPendingIntent);
-        mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        *//* notificationID allows you to update the notification later on. *//*
-        mNotificationManager.notify(notificationID, mBuilder.build());
-    }*/
 
     protected void cancelNotification() {
         Log.i("Cancel", "notification");
